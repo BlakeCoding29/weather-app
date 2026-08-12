@@ -19,4 +19,19 @@ params = {
 
 response = requests.get(url, params=params)
 
-print(response.json())
+data = response.json()
+
+city_name = data["name"]
+temperature = data["main"]["temp"]
+feels_like = data["main"]["feels_like"]
+humidity = data["main"]["humidity"]
+wind_speed = data["wind"]["speed"]
+description = data["weather"][0]["description"]
+
+print()
+print(f"Weather for {city_name}")
+print(f"Temperature: {temperature}°F")
+print(f"Feels like: {feels_like}°F")
+print(f"Humidity: {humidity}%")
+print(f"Wind speed: {wind_speed} mph")
+print(f"Conditions: {description.title()}")
