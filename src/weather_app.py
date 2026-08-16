@@ -40,16 +40,22 @@ def display_weather(data):
 
 
 def main():
-    city = input("Enter a city: ")
+    while True:
+        city = input("Enter a city: ")
 
-    response = get_weather(city, api_key)
-    data = response.json()
+        response = get_weather(city, api_key)
+        data = response.json()
 
-    if response.status_code != 200:
-        print("City not found. Please check the city name and try again.")
-        return
+        if response.status_code != 200:
+            print("City not found. Please check the city name and try again.")
+        else:
+            display_weather(data)
 
-    display_weather(data)
+        search_again = input("\nSearch another city? (y/n): ").lower()
+
+        if search_again != "y":
+            print("Goodbye!")
+            break
 
 
 if __name__ == "__main__":
